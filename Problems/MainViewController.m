@@ -4,6 +4,7 @@
 @implementation MainViewController
 
 @synthesize list = _list;
+@synthesize button = _button;
 
 - (void)viewDidLoad
 {
@@ -20,11 +21,15 @@
 	return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-- (void)butonTapped:(id)sender
+- (void)buttonTapped:(id)sender
 {
-	NSLog(@"You tapped on: %s", sender);
+	NSLog(@"You tapped on: %@", sender);
 
 	[self performSegueWithIdentifier:@"ModalSegue" sender:sender];
 }
 
+- (void)dealloc {
+    [_buttonTapped release];
+    [super dealloc];
+}
 @end
