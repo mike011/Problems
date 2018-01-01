@@ -6,10 +6,12 @@
 	NSMutableArray *list;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-	if (self == [super initWithStyle:style])
+    if (self == [super initWithCoder:aDecoder])
 	{
+        list = [NSMutableArray arrayWithCapacity: 10];
+        
 		[list addObject:@"One"];
 		[list addObject:@"Two"];
 		[list addObject:@"Three"];
@@ -22,6 +24,7 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+    NSLog(@"viewDidLoad is called");
 }
 
 - (void)viewDidUnload
@@ -46,6 +49,8 @@
 	static NSString *CellIdentifier = @"Cell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
+    NSLog(@"the cell is %@", [list objectAtIndex:indexPath.row]);
+    
 	cell.textLabel.text = [list objectAtIndex:indexPath.row];
 
 	return cell;
